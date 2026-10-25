@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PocketPlan – Budget Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Budget Tracker</h1>
+  <div class="controls">
+    <input type="month" id="month" aria-label="Month">
+    <select id="currency" aria-label="Currency">
+      <option>KSh</option><option>USD</option><option>EUR</option><option>GBP</option><option>UGX</option><option>TZS</option><option>NGN</option>
+    </select>
+  </div>
+</header>
+
+<main>
+  <section class="summary">
+    <div><span>Income</span><strong id="income">0</strong></div>
+    <div><span>Spent</span><strong id="spent">0</strong></div>
+    <div><span>Left to spend</span><strong id="balance">0</strong></div>
+  </section>
+
+  <section class="panel">
+    <h2>Add a transaction</h2>
+    <form id="txForm">
+      <select id="type"><option value="expense">Expense</option><option value="income">Income</option></select>
+      <input type="number" id="amount" min="0" step="0.01" placeholder="Amount" required>
+      <select id="cat"></select>
+      <input type="date" id="date" required>
+      <input type="text" id="note" placeholder="Note (optional)" maxlength="60">
+      <button type="submit">Add transaction</button>
+    </form>
+  </section>
+
+  <section class="panel">
+    <div class="head">
+      <h2>Spending limits</h2>
+      <button id="suggest" class="ghost">Suggest limits (50/30/20)</button>
+    </div>
+    <p class="hint">Set a monthly limit for each category. Bars turn amber at 80% and red when you go over.</p>
+    <div id="limits"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Savings goal</h2>
+    <div class="goal">
+      <input type="text" id="goalName" placeholder="What are you saving for?" maxlength="40">
+      <input type="number" id="goalTarget" min="0" placeholder="Target amount">
+    </div>
+    <div class="bar big"><i id="goalBar"></i></div>
+    <small id="goalText">Add savings transactions in the “Savings” category to fill this bar.</small>
+  </section>
+
+  <section class="panel">
+    <div class="head">
+      <h2>Transactions</h2>
+      <div>
+        <button id="export" class="ghost">Export CSV</button>
+        <button id="reset" class="ghost danger">Reset all</button>
+      </div>
+    </div>
+    <ul id="history"></ul>
+    <p id="empty" class="hint">No transactions this month. Add your income first, then your expenses.</p>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
